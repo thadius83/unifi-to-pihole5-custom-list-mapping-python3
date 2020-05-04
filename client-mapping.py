@@ -2,7 +2,7 @@
 
 import argparse, string, os, sys
 from netaddr import *
-from unifi.controller import Controller
+from pyunifi.controller import Controller
 from python_hosts import Hosts, HostsEntry
 
 parser = argparse.ArgumentParser(description = "Fetch list of hosts from unifi controller and place them in a hosts file")
@@ -45,7 +45,7 @@ else:
     if password is None:
         password = raw_input('Password: ')
 
-c = Controller(controllerIP, userName, password, "8443", "v4", "default")
+c = Controller(controllerIP, userName, password, "8443", "v4", "default", ssl_verify=False)
 clients = c.get_clients()
 list = {}
 
