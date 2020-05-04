@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Updated to support pyunifi library and pi-hole 5.0 custom.list instead of hosts by default. Master branch hardcoded to ssl_verify=False
+
 import argparse, string, os, sys
 from netaddr import *
 from pyunifi.controller import Controller
@@ -66,6 +68,7 @@ for client in clients:
 
     if ip <> "Unknown" and name <> None:
         name = name.replace(" ", "")
+        name = name.replace("\t"," ")        
         list[ip] = name
         sorted(list)
 
