@@ -68,7 +68,6 @@ for client in clients:
 
     if ip <> "Unknown" and name <> None:
         name = name.replace(" ", "")
-        name = name.replace("\t"," ")        
         list[ip] = name
         sorted(list)
 
@@ -82,7 +81,7 @@ for entry in list.items():
 
     hosts.add([new_entry])
     if args.verbose:
-        print entry[0],'\t',entry[1]
+        print entry[0], entry[1]
 
 if args.verbose:
     if args.nohosts:
