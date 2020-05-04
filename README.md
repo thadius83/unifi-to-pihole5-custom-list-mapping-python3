@@ -55,7 +55,7 @@ The text changed is:
 
                     if line.entry_type == 'ipv4_space':
                         hosts_file.write(
-                            "{0}{1}\n".format(
+                            "{0} {1}\n".format(
                                 line.address,
                                 ' '.join(line.names), ))
 
