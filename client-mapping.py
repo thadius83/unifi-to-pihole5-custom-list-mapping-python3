@@ -13,7 +13,7 @@ parser.add_argument('-v', '--verbose', action='store_true', help = "print additi
 parser.add_argument('-nh', '--nohosts', action='store_true', help = "don't attempt to write to hosts file")
 parser.add_argument('-m', '--mixedcase', action='store_true', help = "do not force all names to lower case")
 
-parser.add_argument('-f', '--hostfile', help = "hosts file to use", default = "/etc/hosts")
+parser.add_argument('-f', '--hostfile', help = "hosts file to use", default = "/etc/pihole/custom.list")
 parser.add_argument('-c', '--controller', help = "controller IP or hostname")
 parser.add_argument('-u', '--user', help = "username")
 parser.add_argument('-p', '--password', help = "password")
