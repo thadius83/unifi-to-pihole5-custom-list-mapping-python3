@@ -7,8 +7,10 @@ Within the UniFi controller you can create an alias for devices as they appear o
 
 Place script on PiHole server, in my case this is in /home/pi. You will also need to ensure you have the relevant python libraries installed. 
 
+Note: I am using an adjusted hosts.py file to enable support for spaces instead of tabs in the host file creation https://github.com/scrytch/python-hosts-pihole5 - if you need the original use "python-hosts" below instead of "python-hosts-pihole5"
+
 ```
-sudo pip install python_hosts
+sudo pip install python_hosts-pihole5
 sudo pip install pyunifi
 sudo pip install netaddr
 
