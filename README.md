@@ -45,30 +45,15 @@ To replace this, please copy this new version to /usr/local/lib/python2.7/dist-p
 My client-mapping.py uses the ipv4_space entry type
 
 The text changed is:
-```                   if line.entry_type == 'ipv4':
-                        hosts_file.write(
-                            "{0}\t{1}\n".format(
-                                line.address,
-                                ' '.join(line.names), ))
-
-                        ipv4_entries_written += 1
-
-                    if line.entry_type == 'ipv4_space':
+```                 if line.entry_type == 'ipv4':
                         hosts_file.write(
                             "{0} {1}\n".format(
                                 line.address,
-                                ' '.join(line.names), ))
-
+                                ' '.join(line.names),
+                            )
+                        )
                         ipv4_entries_written += 1
-
                     if line.entry_type == 'ipv6':
-                        hosts_file.write(
-                            "{0}\t{1}\n".format(
-                                line.address,
-                                ' '.join(line.names), ))
-                        ipv6_entries_written += 1
-                        
-                    if line.entry_type == 'ipv6_space':
                         hosts_file.write(
                             "{0} {1}\n".format(
                                 line.address,
