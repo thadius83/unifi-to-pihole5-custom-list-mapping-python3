@@ -38,8 +38,11 @@ Add the following lines to the cron file and save/exit
 0,15,30,45 * * * * /home/pi/client-mapping.py -c [Controller IP] -u [Controller username] -p [Controller password]
 ```
 =====
+
 hosts.py
 To replace this, please copy this new version to /usr/local/lib/python2.7/dist-packages/python_hosts - make a backup of the original to be safe. Also you will need to do this again if you ever update python_hosts
+
+My client-mapping.py uses the ipv4_space entry type
 
 The text changed is:
 ```                   if line.entry_type == 'ipv4':
