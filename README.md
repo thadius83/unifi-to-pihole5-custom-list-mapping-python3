@@ -6,7 +6,10 @@ Converted to run with Python3
 Removed dependency to modify hosts.py
 Added convert to lower case 
 
-Usage: python chatcode.py -v -c <unifi_host> -u <user> -p <pass> (--mixedcase) --hostfile <dest_location>/hosts.txt -d <suffix.domain.to.append>
+Usage: 
+```
+python chatcode.py -v -c <unifi_host> -u <user> -p <pass> (--mixedcase) --hostfile <dest_location>/hosts.txt -d <suffix.domain.to.append>
+```
 
 <original README> - Strikethrough added by me.
   
