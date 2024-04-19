@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 # Updated to support pyunifi library and pi-hole 5.0 custom.list instead of hosts by default. Master branch hardcoded to ssl_verify=False
-# Updated 4/03/2024 to work with python3 & remove the need to modify the python_hosts file
 
 import argparse
 import os
@@ -18,6 +17,7 @@ parser.add_argument('-f', '--hostfile', help="hosts file to use", default="/etc/
 parser.add_argument('-c', '--controller', help="controller IP or hostname")
 parser.add_argument('-u', '--user', help="username")
 parser.add_argument('-p', '--password', help="password")
+parser.add_argument('-d', '--domain', help="domain suffix")
 args = parser.parse_args()
 
 if args.verbose:
@@ -47,6 +47,16 @@ else:
     password = os.getenv("UNIFI_PASSWORD")
     if password is None:
         password = input('Password: ')
+
+if args.domain is not None:
+    domain = args.domain
+    domainsuffix = str('.' + domain)
+else:
+    domain =''
+    domainsuffix = domain
+if domain is None:
+        domain = input('Domain: ')
+        domainsuffix = str('.' + domain)
 
 c = Controller(controllerIP, userName, password, "8443", "v4", "default", ssl_verify=False)
 clients = c.get_clients()
@@ -82,7 +92,7 @@ for entry in host_list.items():
 
     hosts.add([new_entry])
     if args.verbose:
-        print(str(entry[0]) + ' ' + str(entry[1]))
+        print(str(entry[0]) + ' ' + str(entry[1])  + str(domainsuffix))
 
 if args.verbose:
     if args.nohosts:
