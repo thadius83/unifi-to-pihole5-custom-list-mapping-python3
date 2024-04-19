@@ -1,13 +1,20 @@
 ### unifi-to-custom-list-mapping for pi-hole 5.0
 
-4th May 2020: Updated to support pyunifi library as unifi library is unsupported.
-4th May 2020: Updated to support pi-hole 5.0 custom.list instead of hosts file 
+Forked from https://github.com/shanelord01/unifi-to-pihole5-custom-list-mapping
 
+Converted to run with Python3
+Removed dependency to modify hosts.py
+Added convert to lower case 
+
+Usage: python chatcode.py -v -c <unifi_host> -u <user> -p <pass> (--mixedcase) --hostfile <dest_location>/hosts.txt -d <suffix.domain.to.append>
+
+<original README> - Strikethrough added by me.
+  
 Within the UniFi controller you can create an alias for devices as they appear on the network. This script takes the alias entries and their corresponding IP address to maintain a list of Custom DNS entries on the PiHole server. These entries reside in /etc/pihole/custom.list which can be accessed and viewed via the PiHole UI under "Custom DNS". The end result is the dashboard showing your configured hostname for Top Clients and not just an IP Address. 
 
 Place script on PiHole server, in my case this is in /home/pi. You will also need to ensure you have the relevant python libraries installed. 
 
-Note: I am using an adjusted hosts.py file to enable support for spaces instead of tabs in the host file creation - you will need to replace the hosts.py file created by python_hosts with the one here. See below for instructions.
+~~Note: I am using an adjusted hosts.py file to enable support for spaces instead of tabs in the host file creation - you will need to replace the hosts.py file created by python_hosts with the one here. See below for instructions.~~
 
 ```
 sudo pip install python_hosts
@@ -39,26 +46,26 @@ Add the following lines to the cron file and save/exit
 ```
 =====
 
-hosts.py
+~~hosts.py~~
 
-To replace this, please copy this new version to /usr/local/lib/python2.7/dist-packages/python_hosts - make a backup of the original to be safe. Also you will need to do this again if you ever update python_hosts
+~~To replace this, please copy this new version to /usr/local/lib/python2.7/dist-packages/python_hosts - make a backup of the original to be safe. Also you will need to do this again if you ever update python_hosts~~
 
-The text changed is:
-```                 if line.entry_type == 'ipv4':
-                        hosts_file.write(
-                            "{0} {1}\n".format(
-                                line.address,
-                                ' '.join(line.names),
-                            )
-                        )
-                        ipv4_entries_written += 1
-                    if line.entry_type == 'ipv6':
-                        hosts_file.write(
-                            "{0} {1}\n".format(
-                                line.address,
-                                ' '.join(line.names), ))
-                        ipv6_entries_written += 1
-```
+~~The text changed is:~~
+~~```                 if line.entry_type == 'ipv4':
+~~                        hosts_file.write(
+~~                            "{0} {1}\n".format(
+~~                               line.address,
+~~                                ' '.join(line.names),
+~~                            )
+~~                        )
+~~                        ipv4_entries_written += 1
+~~                    if line.entry_type == 'ipv6':
+~~                        hosts_file.write(
+~~                            "{0} {1}\n".format(
+~~                                line.address,
+~~                                ' '.join(line.names), ))
+~~                        ipv6_entries_written += 1
+~~```~~
 =====
 
 Finally, ensure you have selected "Reverse DNS lookup" for "Top Clients" within Settings on the PiHole Server 
