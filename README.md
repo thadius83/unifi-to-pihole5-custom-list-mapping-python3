@@ -2,20 +2,20 @@
 
 Forked from https://github.com/shanelord01/unifi-to-pihole5-custom-list-mapping
 
-Converted to run with Python3
-Removed dependency to modify hosts.py
-Added convert to lower case 
+* Converted to run with Python3
+* Removed dependency to modify hosts.py
+* Added convert to lower case 
 
 Usage: 
 ```
 python chatcode.py -v -c <unifi_host> -u <user> -p <pass> (--mixedcase) --hostfile <dest_location>/hosts.txt -d <suffix.domain.to.append>
 ```
 
-<original README> - Strikethrough added by me.
+> original README - Strikethrough added by me.
   
-Within the UniFi controller you can create an alias for devices as they appear on the network. This script takes the alias entries and their corresponding IP address to maintain a list of Custom DNS entries on the PiHole server. These entries reside in /etc/pihole/custom.list which can be accessed and viewed via the PiHole UI under "Custom DNS". The end result is the dashboard showing your configured hostname for Top Clients and not just an IP Address. 
+> Within the UniFi controller you can create an alias for devices as they appear on the network. This script takes the alias entries and their corresponding IP address to maintain a list of Custom DNS entries on the PiHole server. These entries reside in /etc/pihole/custom.list which can be accessed and viewed via the PiHole UI under "Custom DNS". The end result is the dashboard showing your configured hostname for Top Clients and not just an IP Address. 
 
-Place script on PiHole server, in my case this is in /home/pi. You will also need to ensure you have the relevant python libraries installed. 
+> Place script on PiHole server, in my case this is in /home/pi. You will also need to ensure you have the relevant python libraries installed. 
 
 ~~Note: I am using an adjusted hosts.py file to enable support for spaces instead of tabs in the host file creation - you will need to replace the hosts.py file created by python_hosts with the one here. See below for instructions.~~
 
@@ -25,12 +25,12 @@ sudo pip install pyunifi
 sudo pip install netaddr
 
 ```
-The script requires the controller IP (or hostname), controller username and password to function correctly.  You can specify each of these via a command line parameter (`-c`, `-u` and `-p`), an environment variable (`UNIFI_CONTROLLER`, `UNIFI_USER` and `UNIFI_PASSWORD`), or interactively (in that order of precedence). You can also revert and adjust this to write to a different hosts file instead of the new custom.list (or if your custom.list is in a different directory), using ('-f'). e.g. -f /etc/hosts
+> The script requires the controller IP (or hostname), controller username and password to function correctly.  You can specify each of these via a command line parameter (`-c`, `-u` and `-p`), an environment variable (`UNIFI_CONTROLLER`, `UNIFI_USER` and `UNIFI_PASSWORD`), or interactively (in that order of precedence). You can also revert and adjust this to write to a different hosts file instead of the new custom.list (or if your custom.list is in a different directory), using ('-f'). e.g. -f /etc/hosts
 
-Still in the works in beta channel (in the mean time hard coded to ssl_verify=False): 
+> Still in the works in beta channel (in the mean time hard coded to ssl_verify=False): 
 It will also support verification of an SSL Certificate using command line parameter ('-s') or an environment variable ('SSL_CERT_VAR'), with options True, False or defining path to specific certificate "path/to/custom_cert.pem". I have defaulted it to False which is opposite to pyunifi library.
 
-Create a suitable crontab entry for the root user, it will need to be for the root user as you are modifying the /etc/hosts file. 
+> Create a suitable crontab entry for the root user, it will need to be for the root user as you are modifying the /etc/hosts file. 
 
 ```
 sudo crontab -e 
@@ -39,7 +39,7 @@ Add the following lines to the cron file and save/exit
 
 0,15,30,45 * * * * /home/pi/client-mapping.py
 ```
-If not using environment variables, use:
+> If not using environment variables, use:
 ```
 sudo crontab -e 
 
@@ -71,6 +71,6 @@ Add the following lines to the cron file and save/exit
 ~~```~~
 =====
 
-Finally, ensure you have selected "Reverse DNS lookup" for "Top Clients" within Settings on the PiHole Server 
+> Finally, ensure you have selected "Reverse DNS lookup" for "Top Clients" within Settings on the PiHole Server 
 
 
